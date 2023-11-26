@@ -1,0 +1,1 @@
+<span> <img width="1024" alt="Склад ОСБ" src="/upload/medialibrary/e07/yl01zybmoi1qlr8hroont4c7gf1g5f77.jpeg" height="295" loading="lazy" title="Скалд ОСП" class="delivery-benefits__background-image"> </span>
