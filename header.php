@@ -35,8 +35,9 @@ $GLOBALS['PRICE_CODE'] = "PRICE_" . getPriceID();
 </head>
 <script>
      if ($('.header').hasClass('index')) {
-       setHeaderIcon("<?= SITE_TEMPLATE_PATH ?>/assets/img/svg")
+       setHeaderIcon("<?= SITE_TEMPLATE_PATH ?>/assets/img/svg");
      }
+		getPath("<?= SITE_TEMPLATE_PATH ?>/assets/img/svg");
 </script>
 <body>
 
@@ -57,6 +58,10 @@ $GLOBALS['PRICE_CODE'] = "PRICE_" . getPriceID();
 <!--    </div>-->
 <!--</div>-->
 <header id="header" class="header<?= $GLOBALS['index'] ? ' index' : '' ?>">
+    <div class="header-overlay">
+        header-overlay
+    </div> 
+    <div class="overlay-bg-help"></div>
     <div class="container">
         <div class="header__topbar">
 
@@ -112,6 +117,7 @@ $GLOBALS['PRICE_CODE'] = "PRICE_" . getPriceID();
                     </a>
                 <? endforeach; ?>
             </div>
+						<div class="header-search__mobile-close">Закрыть</div>
 
         </div>
 
@@ -122,6 +128,10 @@ $GLOBALS['PRICE_CODE'] = "PRICE_" . getPriceID();
             </div>
 
             <div class="header__nav-wrapper">
+                <div class="header__overlay-search">
+                    <input type="text" class="header__overlay-search-input" placeholder="Искать у всех производителей">
+                    <img class="header__overlay-search-img" src="<?= SITE_TEMPLATE_PATH ?>/assets/img/svg/danis-button-search.svg" alt="">
+                </div>
                 <div id="header__nav-block" class="header__nav-block">
                     <div class="header__nav-firstbar">
                         <div class="header__city">
@@ -238,6 +248,378 @@ $GLOBALS['PRICE_CODE'] = "PRICE_" . getPriceID();
                 <?php endif; ?>
             </div>
         </div>
+				<div class="header__overlay-results">
+				<div class="header__overlay-results-leftBar">
+					<img class="header__overlay-results-ellipse" src="<?= SITE_TEMPLATE_PATH ?>/assets/img/svg/danis-ellipse.svg" alt="">
+					<p class="header__overlay-results-text">
+						Результаты поиска
+					</p>
+				</div>
+				<div class="header__overlay-results-container">
+					<div class="header__overlay-results-value-container">
+						<img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/svg/danis-ellipse-gray.svg" alt="">
+						<p class="header__overlay-results-value">osb</p>
+					</div>
+					<ul class="header__overlay-results-res-container">
+						<li>
+							<a href="#" target="_blank">OSB 9мм</a>
+						</li>
+						<li>
+							<a href="#" target="_blank">OSB 9мм</a>
+						</li>
+						<li>
+							<a href="#" target="_blank">OSB 9мм</a>
+						</li>
+						<li>
+							<a href="#" target="_blank">OSB 9мм</a>
+						</li>
+						<li>
+							<a href="#" target="_blank">OSB 9мм</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="header__overlay-brands">
+				<div class="header__overlay-brands-leftBar">
+					<img class="header__overlay-brands-ellipse" src="<?= SITE_TEMPLATE_PATH ?>/assets/img/svg/danis-ellipse.svg" alt="">
+					<p class="header__overlay-brands-text">
+						Бренды
+					</p>
+				</div>
+				<div class="header__overlay-brands-container">
+					<a class="header__overlay-brand" href="">Egger</a>
+					<a class="header__overlay-brand" href="">Kronospan</a>
+					<a class="header__overlay-brand" href="">Ultralam</a>
+					<a class="header__overlay-brand" href="">Калевала</a>
+					<a class="header__overlay-brand" href="">Муром</a>
+					<a class="header__overlay-brand" href="">НЛК</a>
+				</div>
+			</div>
+        <div class="header__overlay-popular">
+				<div class="header__overlay-popular-leftBar">
+					<img class="header__overlay-popular-ellipse" src="<?= SITE_TEMPLATE_PATH ?>/assets/img/svg/danis-ellipse.svg" alt="">
+					<p class="header__overlay-popular-text">
+						Популярные запросы
+					</p>
+				</div>
+				<div class="header__overlay-popular-recks">
+					<a class="header__overlay-popular-reck" href="">ОСП-3</a>
+					<a class="header__overlay-popular-reck" href="">ОСП под паркет</a>
+					<a class="header__overlay-popular-reck" href="">ОСП-3</a>
+					<a class="header__overlay-popular-reck" href="">ОСП для пола</a>
+					<a class="header__overlay-popular-reck" href="">ОСП-3</a>
+					<a class="header__overlay-popular-reck" href="">ОСП для пола</a>
+					<a class="header__overlay-popular-reck" href="">ОСП для пола</a>
+					<a class="header__overlay-popular-reck" href="">ОСП для пола</a>
+					<a class="header__overlay-popular-reck" href="">ОСП-3</a>
+					<a class="header__overlay-popular-reck" href="">ОСП под паркет</a>
+					<a class="header__overlay-popular-reck" href="">ОСП-3</a>
+				</div>
+        </div>
+        <div class="header__overlay-presonal">
+				<div class="header__overlay-presonal-leftBar">
+					<img class="header__overlay-presonal-ellipse" src="<?= SITE_TEMPLATE_PATH ?>/assets/img/svg/danis-ellipse.svg" alt="">
+					<p class="header__overlay-presonal-text">
+						Рекомендуем для вас
+					</p>
+				</div>
+				<div class="header__overlay-presonal-swiper">
+					<div class="swiper search-swiper">
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper">
+							<!-- Slides -->
+							<div class="swiper-slide">
+								<div class="product" data-height="6" data-price="575.00">
+									<div class="product__content preview__content">
+										<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">
+											<div class="product__image preview__image">
+			
+												<picture>
+													<source type="image/webp"
+														srcset="/local/templates/osb-dev/assets/img/products/34d50c11d8603dd1128e005e0b073350180.webp"
+														media="(max-width: 767px)">
+													<source type="image/png"
+														srcset="/upload/resize_cache/iblock/30e/180_180_1/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png"
+														media="(max-width: 767px)">
+													<img width="288" height="288" class="swiper-lazy" loading="lazy"
+														src="/upload/iblock/30e/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png" alt="" title="">
+												</picture>
+											</div>
+										</a>
+			
+										<div class="product__title preview__title">
+											<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">6мм плита OSB-3 НЛК 2500х1250мм</a>
+										</div>
+			
+			
+										<div class="product__price">
+											184 <span>₽/м2</span>
+										</div>
+			
+										<div style="display: none" class="preview__price">
+											575.00 </div>
+			
+										<div class="product__basket">
+											<div class="product__num">
+												<button class="minus"><img src="/local/templates/osb-dev/assets/img/svg/minus.svg" alt="">
+												</button>
+												<input class="preview__count" type="number" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+													value="1">
+												<button class="plus"><img src="/local/templates/osb-dev/assets/img/svg/plus.svg" alt="">
+												</button>
+											</div>
+											<button class="in-basket butForm" data-prod-id="885">
+												<img src="/local/templates/osb-dev/assets/img/svg/basket-light.svg" alt="">
+												<span>575.00 ₽/шт</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="product" data-height="6" data-price="575.00">
+									<div class="product__content preview__content">
+										<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">
+											<div class="product__image preview__image">
+			
+												<picture>
+													<source type="image/webp"
+														srcset="/local/templates/osb-dev/assets/img/products/34d50c11d8603dd1128e005e0b073350180.webp"
+														media="(max-width: 767px)">
+													<source type="image/png"
+														srcset="/upload/resize_cache/iblock/30e/180_180_1/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png"
+														media="(max-width: 767px)">
+													<img width="288" height="288" class="swiper-lazy" loading="lazy"
+														src="/upload/iblock/30e/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png" alt="" title="">
+												</picture>
+											</div>
+										</a>
+			
+										<div class="product__title preview__title">
+											<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">6мм плита OSB-3 НЛК 2500х1250мм</a>
+										</div>
+			
+			
+										<div class="product__price">
+											184 <span>₽/м2</span>
+										</div>
+			
+										<div style="display: none" class="preview__price">
+											575.00 </div>
+			
+										<div class="product__basket">
+											<div class="product__num">
+												<button class="minus"><img src="/local/templates/osb-dev/assets/img/svg/minus.svg" alt="">
+												</button>
+												<input class="preview__count" type="number" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+													value="1">
+												<button class="plus"><img src="/local/templates/osb-dev/assets/img/svg/plus.svg" alt="">
+												</button>
+											</div>
+											<button class="in-basket butForm" data-prod-id="885">
+												<img src="/local/templates/osb-dev/assets/img/svg/basket-light.svg" alt="">
+												<span>575.00 ₽/шт</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="product" data-height="6" data-price="575.00">
+									<div class="product__content preview__content">
+										<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">
+											<div class="product__image preview__image">
+			
+												<picture>
+													<source type="image/webp"
+														srcset="/local/templates/osb-dev/assets/img/products/34d50c11d8603dd1128e005e0b073350180.webp"
+														media="(max-width: 767px)">
+													<source type="image/png"
+														srcset="/upload/resize_cache/iblock/30e/180_180_1/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png"
+														media="(max-width: 767px)">
+													<img width="288" height="288" class="swiper-lazy" loading="lazy"
+														src="/upload/iblock/30e/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png" alt="" title="">
+												</picture>
+											</div>
+										</a>
+			
+										<div class="product__title preview__title">
+											<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">6мм плита OSB-3 НЛК 2500х1250мм</a>
+										</div>
+			
+			
+										<div class="product__price">
+											184 <span>₽/м2</span>
+										</div>
+			
+										<div style="display: none" class="preview__price">
+											575.00 </div>
+			
+										<div class="product__basket">
+											<div class="product__num">
+												<button class="minus"><img src="/local/templates/osb-dev/assets/img/svg/minus.svg" alt="">
+												</button>
+												<input class="preview__count" type="number" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+													value="1">
+												<button class="plus"><img src="/local/templates/osb-dev/assets/img/svg/plus.svg" alt="">
+												</button>
+											</div>
+											<button class="in-basket butForm" data-prod-id="885">
+												<img src="/local/templates/osb-dev/assets/img/svg/basket-light.svg" alt="">
+												<span>575.00 ₽/шт</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="product" data-height="6" data-price="575.00">
+									<div class="product__content preview__content">
+										<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">
+											<div class="product__image preview__image">
+			
+												<picture>
+													<source type="image/webp"
+														srcset="/local/templates/osb-dev/assets/img/products/34d50c11d8603dd1128e005e0b073350180.webp"
+														media="(max-width: 767px)">
+													<source type="image/png"
+														srcset="/upload/resize_cache/iblock/30e/180_180_1/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png"
+														media="(max-width: 767px)">
+													<img width="288" height="288" class="swiper-lazy" loading="lazy"
+														src="/upload/iblock/30e/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png" alt="" title="">
+												</picture>
+											</div>
+										</a>
+			
+										<div class="product__title preview__title">
+											<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">6мм плита OSB-3 НЛК 2500х1250мм</a>
+										</div>
+			
+			
+										<div class="product__price">
+											184 <span>₽/м2</span>
+										</div>
+			
+										<div style="display: none" class="preview__price">
+											575.00 </div>
+			
+										<div class="product__basket">
+											<div class="product__num">
+												<button class="minus"><img src="/local/templates/osb-dev/assets/img/svg/minus.svg" alt="">
+												</button>
+												<input class="preview__count" type="number" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+													value="1">
+												<button class="plus"><img src="/local/templates/osb-dev/assets/img/svg/plus.svg" alt="">
+												</button>
+											</div>
+											<button class="in-basket butForm" data-prod-id="885">
+												<img src="/local/templates/osb-dev/assets/img/svg/basket-light.svg" alt="">
+												<span>575.00 ₽/шт</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="product" data-height="6" data-price="575.00">
+									<div class="product__content preview__content">
+										<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">
+											<div class="product__image preview__image">
+			
+												<picture>
+													<source type="image/webp"
+														srcset="/local/templates/osb-dev/assets/img/products/34d50c11d8603dd1128e005e0b073350180.webp"
+														media="(max-width: 767px)">
+													<source type="image/png"
+														srcset="/upload/resize_cache/iblock/30e/180_180_1/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png"
+														media="(max-width: 767px)">
+													<img width="288" height="288" class="swiper-lazy" loading="lazy"
+														src="/upload/iblock/30e/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png" alt="" title="">
+												</picture>
+											</div>
+										</a>
+			
+										<div class="product__title preview__title">
+											<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">6мм плита OSB-3 НЛК 2500х1250мм</a>
+										</div>
+			
+			
+										<div class="product__price">
+											184 <span>₽/м2</span>
+										</div>
+			
+										<div style="display: none" class="preview__price">
+											575.00 </div>
+			
+										<div class="product__basket">
+											<div class="product__num">
+												<button class="minus"><img src="/local/templates/osb-dev/assets/img/svg/minus.svg" alt="">
+												</button>
+												<input class="preview__count" type="number" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+													value="1">
+												<button class="plus"><img src="/local/templates/osb-dev/assets/img/svg/plus.svg" alt="">
+												</button>
+											</div>
+											<button class="in-basket butForm" data-prod-id="885">
+												<img src="/local/templates/osb-dev/assets/img/svg/basket-light.svg" alt="">
+												<span>575.00 ₽/шт</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="product" data-height="6" data-price="575.00">
+									<div class="product__content preview__content">
+										<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">
+											<div class="product__image preview__image">
+			
+												<picture>
+													<source type="image/webp"
+														srcset="/local/templates/osb-dev/assets/img/products/34d50c11d8603dd1128e005e0b073350180.webp"
+														media="(max-width: 767px)">
+													<source type="image/png"
+														srcset="/upload/resize_cache/iblock/30e/180_180_1/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png"
+														media="(max-width: 767px)">
+													<img width="288" height="288" class="swiper-lazy" loading="lazy"
+														src="/upload/iblock/30e/esbkka0cja6hiqmxuf9q41r8xsfo12xf.png" alt="" title="">
+												</picture>
+											</div>
+										</a>
+			
+										<div class="product__title preview__title">
+											<a href="/product/6mm-plita-osb-3-nlk-2500kh1250mm/">6мм плита OSB-3 НЛК 2500х1250мм</a>
+										</div>
+			
+			
+										<div class="product__price">
+											184 <span>₽/м2</span>
+										</div>
+			
+										<div style="display: none" class="preview__price">
+											575.00 </div>
+			
+										<div class="product__basket">
+											<div class="product__num">
+												<button class="minus"><img src="/local/templates/osb-dev/assets/img/svg/minus.svg" alt="">
+												</button>
+												<input class="preview__count" type="number" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+													value="1">
+												<button class="plus"><img src="/local/templates/osb-dev/assets/img/svg/plus.svg" alt="">
+												</button>
+											</div>
+											<button class="in-basket butForm" data-prod-id="885">
+												<img src="/local/templates/osb-dev/assets/img/svg/basket-light.svg" alt="">
+												<span>575.00 ₽/шт</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
     </div>
 </header>
 

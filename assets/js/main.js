@@ -67,7 +67,11 @@ if ($('body').innerWidth() < 991) {
 	$('.index-benefits__swiper').addClass('swiper');
 }
 
-
+let assetPath;
+function getPath(path) {
+	assetPath = path;
+	console.log(assetPath);
+}
 function setHeaderIcon(path) {
 	function header_default() {
 		$(".header__city img").attr("src", path + "/city.svg");
@@ -77,6 +81,10 @@ function setHeaderIcon(path) {
 		$(".header__phone-mobile a img").attr("src", path + "/phone.svg");
 		$(".header__auth img").attr("src", path + "/auth.svg");
 		$(".header__btn-nav img").attr("src", path + "/btn-nav.svg");
+		document.querySelector('.header__info').style.color = '#333';
+		document.querySelector('.header__phone span').style.color = '#333';
+		document.querySelector('.header__basket-icon').style = `background-image: url(${path}/basket.svg)`;
+		document.querySelector('.header__basket span').style = `color: #333`;
 		$('.header').removeClass('index');
 	}
 
@@ -88,6 +96,10 @@ function setHeaderIcon(path) {
 		$(".header__phone-mobile a img").attr("src", path + "/phone-light.svg");
 		$(".header__auth img").attr("src", path + "/auth-light.svg");
 		$(".header__btn-nav img").attr("src", path + "/btn-nav-light.svg");
+		document.querySelector('.header__info').style.color = '#fff';
+		document.querySelector('.header__phone span').style.color = '#fff';
+		document.querySelector('.header__basket-icon').style = `background-image: url(${path}/basket-light.svg)`;
+		document.querySelector('.header__basket span').style = `color: #fff`;
 		$('.header').addClass('index');
 	}
 
@@ -99,14 +111,13 @@ function setHeaderIcon(path) {
 	}
 
 	$(document).scroll(function () {
-		if ($(window).scrollTop() > 50) {
+		if ($(window).scrollTop() > 50 && !document.querySelector('.header-overlay').className.includes('active')) {
 			header_default();
 		} else if ($(window).scrollTop() < 50) {
 			header_light();
 		}
 	});
 }
-
 
 // Слушатели
 
@@ -786,4 +797,202 @@ function hoverOnLogo(arrayLinks) {
 			})
 		});
 	}
+}
+
+
+// ================================== НОВЫЙ ПОИСК (ДАНИС) ===============================================================================
+function setLight(path) {
+	$(".header__city img").attr("src", path + "/city-light.svg");
+	$(".header__adress img").attr("src", path + "/adress-light.svg");
+	$(".header__hours-item img").attr("src", path + "/clock-light.svg");
+	$(".header__phone img").attr("src", path + "/phone-light.svg");
+	$(".header__phone-mobile a img").attr("src", path + "/phone-light.svg");
+	$(".header__auth img").attr("src", path + "/auth-light.svg");
+	$(".header__btn-nav img").attr("src", path + "/btn-nav-light.svg");
+	document.querySelector('.header__info').style.color = '#fff';
+	document.querySelector('.header__phone span').style.color = '#fff';
+	document.querySelector('.header__basket-icon').style = `background-image: url(${assetPath}/basket-light.svg)`;
+	document.querySelector('.header__basket span').style = `color: #fff`;
+}
+function setDefault(path) {
+	$(".header__city img").attr("src", path + "/city.svg");
+	$(".header__adress img").attr("src", path + "/adress.svg");
+	$(".header__hours-item img").attr("src", path + "/clock.svg");
+	$(".header__phone img").attr("src", path + "/phone.svg");
+	$(".header__phone-mobile a img").attr("src", path + "/phone.svg");
+	$(".header__auth img").attr("src", path + "/auth.svg");
+	$(".header__btn-nav img").attr("src", path + "/btn-nav.svg");
+	document.querySelector('.header__info').style.color = '#333';
+	document.querySelector('.header__phone span').style.color = '#333';
+	document.querySelector('.header__basket-icon').style = `background-image: url(${assetPath}/basket.svg)`;
+	document.querySelector('.header__basket span').style = `color: #333`;
+}
+
+if (document.querySelector('.header__search')) {
+	document.querySelector('.header__search').addEventListener('click', (evt) => {
+		evt.preventDefault();
+		const searchInterval = setInterval(() => {
+			
+			document.querySelector('.header-overlay').style.height = `${document.querySelector('.header .container').offsetHeight + 40}px`;
+				console.log(document.querySelector('.header .container').offsetHeight)
+			}, 100);
+			setTimeout(() => {
+				clearInterval(searchInterval);
+			}, 1000)
+		document.querySelector('.header__nav-block').style = 'pointer-events: none; display: none';
+		document.querySelector('.header__auth').style.display = 'none';
+		document.querySelector('.header-overlay').classList.add('header-overlay_active');
+		document.querySelector('.overlay-bg-help').classList.add('overlay-bg-help_active');
+		document.querySelector('.header__search').style.display = 'none';
+		document.querySelector('.header__overlay-search').classList.add('header__overlay-search_active');
+		setLight(assetPath);
+		setTimeout(() => {
+			document.querySelector('.header__overlay-popular').classList.add('header__overlay-popular_active');
+		}, 300);
+		setTimeout(() => {
+			document.querySelector('.header__overlay-presonal').classList.add('header__overlay-presonal_active');
+		}, 300)
+	})
+}
+
+document.addEventListener('click', (evt) => {
+	if (evt.target.closest('header') == null) {
+		document.querySelector('.header__overlay-search-input').value = '';
+		document.querySelector('.header__overlay-results').classList.remove('header__overlay-results_active');
+		document.querySelector('.header__overlay-brands').classList.remove('header__overlay-brands_active');
+		document.querySelector('.header-overlay').classList.remove('header-overlay_active');
+		document.querySelector('.header__nav-block').style = 'pointer-events: all; display: block';
+		document.querySelector('.header__auth').style.display = 'initial';
+		document.querySelector('.overlay-bg-help').classList.remove('overlay-bg-help_active');
+		document.querySelector('.header__search').style.display = 'block';
+		document.querySelector('.header__overlay-search').classList.remove('header__overlay-search_active');
+		document.querySelector('.header__overlay-popular').classList.remove('header__overlay-popular_active');
+		document.querySelector('.header__overlay-presonal').classList.remove('header__overlay-presonal_active');
+
+		if ($(window).scrollTop() > 100) {
+			setDefault(assetPath);
+	
+		} else if ($(window).scrollTop() < 100 && document.querySelector('.header').className.includes('index')) {
+			setLight(assetPath)
+		}
+		else {
+			setDefault(assetPath);
+		}
+	}
+});
+
+document.querySelector('.header__search-mobile').addEventListener('click', (evt) => {
+	evt.preventDefault();
+
+	document.querySelector('.header-overlay').style.height = `100vh`;
+	document.querySelector('.header__btn-nav').style.display = 'none';
+	document.querySelector('.header__search-mobile').style.display = 'none';
+	document.querySelector('.header__phone-mobile').style.display = 'none';
+	document.querySelector('.header__logo-mobile').style = 'justify-content: flex-start';
+
+	document.querySelector('.header-overlay').classList.add('header-overlay_active');
+	document.querySelector('.overlay-bg-help').classList.add('overlay-bg-help_active');
+	document.querySelector('.header__overlay-search').classList.add('header__overlay-search_active');
+
+	setTimeout(() => {
+		document.querySelector('.header').style = 'height: 100vh; overflow-y: scroll;';
+		document.querySelector('.header__nav').style = `margin-top: 93px;
+		padding-top: 14px;
+		position: fixed;
+		width: ${document.querySelector('.header .container').offsetWidth - 18}px;
+		margin-left: -1px;
+		top: 0;
+		z-index: 1000;
+		background-color: #333;`;
+		document.querySelector('.header__overlay-popular').style = `margin-top: 222px;`;
+		document.querySelector('.header__nav-wrapper	').style = 'height: 114px;';
+		document.querySelector('.header__topbar').style = `position: fixed;
+		width: ${document.querySelector('.header .container').offsetWidth - 18}px;
+		top: 0;
+		transform: translateX(-1px);
+		z-index: 1000;
+		background-color: #333;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.7);`;
+	}, 500);
+
+	document.querySelector('.header__overlay-search-input').placeholder = 'По всем производителям';
+	
+	if (screen.width < 991) {
+		document.querySelector('.header-search__mobile-close').classList.add('header-search__mobile-close_active');
+	}
+	setTimeout(() => {
+		document.querySelector('.header__overlay-popular').classList.add('header__overlay-popular_active');
+	}, 300);
+	setTimeout(() => {
+		document.querySelector('.header__overlay-presonal').classList.add('header__overlay-presonal_active');
+	}, 300)
+});
+
+document.querySelector('.header-search__mobile-close').addEventListener('click', () => {
+if (screen.width >= 991) {
+	document.querySelector('.header-overlay').classList.remove('header-overlay_active');
+	document.querySelector('.header__nav-block').style = 'pointer-events: all; display: block';
+	document.querySelector('.header__auth').style.display = 'initial';
+	document.querySelector('.overlay-bg-help').classList.remove('overlay-bg-help_active');
+	document.querySelector('.header__search').style.display = 'block';
+	document.querySelector('.header__overlay-search').classList.remove('header__overlay-search_active');
+	document.querySelector('.header__overlay-popular').classList.remove('header__overlay-popular_active');
+	document.querySelector('.header__overlay-presonal').classList.remove('header__overlay-presonal_active');
+}
+else {
+	document.querySelector('.header-overlay').classList.remove('header-overlay_active');
+	document.querySelector('.header__nav-block').style = 'pointer-events: all; display: block';
+	document.querySelector('.header__auth').style.display = 'initial';
+	document.querySelector('.overlay-bg-help').classList.remove('overlay-bg-help_active');
+	document.querySelector('.header__search').style.display = 'block';
+	document.querySelector('.header__overlay-search').classList.remove('header__overlay-search_active');
+	document.querySelector('.header__overlay-popular').classList.remove('header__overlay-popular_active');
+	document.querySelector('.header__overlay-presonal').classList.remove('header__overlay-presonal_active');
+	document.querySelector('.header__btn-nav').style.display = 'block';
+	document.querySelector('.header__search-mobile').style.display = 'block';
+	document.querySelector('.header__phone-mobile').style.display = 'block';
+	document.querySelector('.header__logo-mobile').style = 'justify-content: center';
+	document.querySelector('.header-search__mobile-close').classList.remove('header-search__mobile-close_active');
+	document.querySelector('.header__topbar').style = `border-bottom: none`;
+	document.querySelector('.header').style = 'height: auto; overflow-y: visible;';
+	document.querySelector('.header__nav').style = ``;
+	document.querySelector('.header__overlay-popular').style = ``;
+	document.querySelector('.header__nav-wrapper	').style = '';
+	document.querySelector('.header__topbar').style = ``;
+	document.querySelector('.header__overlay-search-input').value = '';
+	document.querySelector('.header__overlay-results').classList.remove('header__overlay-results_active');
+	document.querySelector('.header__overlay-brands').classList.remove('header__overlay-brands_active');
+}
+});
+
+document.querySelector('.header__overlay-search-input').addEventListener('input', (evt) => {
+	if (evt.target.value.trim().length > 0) {
+		document.querySelector('.header__overlay-popular').classList.remove('header__overlay-popular_active');
+		document.querySelector('.header__overlay-presonal').classList.remove('header__overlay-presonal_active');
+		document.querySelector('.header__overlay-results').classList.add('header__overlay-results_active');
+		document.querySelector('.header__overlay-brands').classList.add('header__overlay-brands_active');
+	}
+	else {
+		document.querySelector('.header__overlay-popular').classList.add('header__overlay-popular_active');
+		document.querySelector('.header__overlay-presonal').classList.add('header__overlay-presonal_active');
+		document.querySelector('.header__overlay-results').classList.remove('header__overlay-results_active');
+		document.querySelector('.header__overlay-brands').classList.remove('header__overlay-brands_active');
+	}
+})
+
+function initSlider() {
+	window.addEventListener('load', () => {
+		const swiper = new Swiper('.search-swiper', {
+			// Optional parameters
+			direction: 'horizontal',
+			loop: true,
+			slidesPerView: "auto",
+			spaceBetween: 20,
+			watchOverflow: true,
+		});
+	});
+}
+
+if (screen.width >= 991) {
+	initSlider();
 }
